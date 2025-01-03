@@ -11,12 +11,4 @@ class ServerApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
-	@Test
-	void sampleTest() {
-		int expected = 2137;
-		int actual = 2135 + 1;
-		assertThat(actual).isEqualTo(expected);
-	}
-
 }
