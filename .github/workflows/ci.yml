@@ -20,6 +20,9 @@ jobs:
           java-package: jdk
           jdk architecture: x64
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./server/gradlew
+
       - name: Build project
         working-directory: ./server
         run: ./gradlew clean build -x test
@@ -38,6 +41,8 @@ jobs:
           java-version: '21'
           java-package: jdk
           jdk architecture: x64
+
+      - name: { run: "chmod +x ./server/gradlew" }
 
       - name: Run tests
         working-directory: ./server
