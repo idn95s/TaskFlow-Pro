@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           java-package: jdk
-          jdk architecture: x64
+          architecture: x64  # Usunięcie błędu składniowego
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./server/gradlew
@@ -40,9 +40,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           java-package: jdk
-          jdk architecture: x64
+          architecture: x64  # Usunięcie błędu składniowego
 
-      - name: { run: "chmod +x ./server/gradlew" }
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./server/gradlew
 
       - name: Run tests
         working-directory: ./server
