@@ -20,6 +20,12 @@ jobs:
           java-package: jdk
           architecture: x64
 
+      - name: Set up environment variables
+        run: |
+          echo "PSQL_URL=${{ secrets.PSQL_URL }}" >> $GITHUB_ENV
+          echo "PSQL_USERNAME=${{ secrets.PSQL_USERNAME }}" >> $GITHUB_ENV
+          echo "PSQL_PASSWORD=${{ secrets.PSQL_PASSWORD }}" >> $GITHUB_ENV
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./server/gradlew
 
@@ -41,6 +47,12 @@ jobs:
           java-version: '21'
           java-package: jdk
           architecture: x64
+
+      - name: Set up environment variables
+        run: |
+          echo "PSQL_URL=${{ secrets.PSQL_URL }}" >> $GITHUB_ENV
+          echo "PSQL_USERNAME=${{ secrets.PSQL_USERNAME }}" >> $GITHUB_ENV
+          echo "PSQL_PASSWORD=${{ secrets.PSQL_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./server/gradlew
