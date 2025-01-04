@@ -30,13 +30,13 @@ jobs:
           echo "PSQL_PASSWORD=${{ secrets.PSQL_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Update db url
-        run: sed -i 's/<db_url>/${{ secrets.PSQL_URL }}/' ./server/src/main/resources/application.properties
+        run: sed -i 's|<db_url>|${{ secrets.PSQL_URL }}|' ./server/src/main/resources/application.properties
 
       - name: Update db username
-        run: sed -i 's/<db_username>/${{ secrets.PSQL_USERNAME }}/' ./server/src/main/resources/application.properties
+        run: sed -i 's|<db_username>|${{ secrets.PSQL_USERNAME }}|' ./server/src/main/resources/application.properties
 
       - name: Update db password
-        run: sed -i 's/<db_password>/${{ secrets.PSQL_PASSWORD }}/' ./server/src/main/resources/application.properties
+        run: sed -i 's|<db_password>|${{ secrets.PSQL_PASSWORD }}|' ./server/src/main/resources/application.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./server/gradlew
@@ -67,13 +67,13 @@ jobs:
           echo "PSQL_PASSWORD=${{ secrets.PSQL_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Update db url
-        run: sed -i 's/<db_url>/${{ secrets.PSQL_URL }}/' ./server/src/main/resources/application.properties
+        run: sed -i 's|<db_url>|${{ secrets.PSQL_URL }}|' ./server/src/main/resources/application.properties
 
       - name: Update db username
-        run: sed -i 's/<db_username>/${{ secrets.PSQL_USERNAME }}/' ./server/src/main/resources/application.properties
+        run: sed -i 's|<db_username>|${{ secrets.PSQL_USERNAME }}|' ./server/src/main/resources/application.properties
 
       - name: Update db password
-        run: sed -i 's/<db_password>/${{ secrets.PSQL_PASSWORD }}/' ./server/src/main/resources/application.properties
+        run: sed -i 's|<db_password>|${{ secrets.PSQL_PASSWORD }}|' ./server/src/main/resources/application.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./server/gradlew
