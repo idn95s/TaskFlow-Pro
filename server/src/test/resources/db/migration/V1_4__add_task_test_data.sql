@@ -1,0 +1,2 @@
+INSERT INTO task (id, title, description, status, priority, assigned_to_id, created_at, updated_at)
+VALUES (1, 'Existing Task', 'This is an existing task', 'TODO', 'HIGH', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
