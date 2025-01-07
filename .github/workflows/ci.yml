@@ -47,4 +47,6 @@ jobs:
 
       - name: Run tests
         working-directory: ./server
+        env:
+          SPRING_PROFILES_ACTIVE: test
         run: ./gradlew test
