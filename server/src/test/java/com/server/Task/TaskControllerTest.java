@@ -6,15 +6,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.ServerApplication;
-import com.server.models.dtos.TaskNavigationDto;
+import com.server.models.dtos.TaskCreationDTO;
 import com.server.models.enums.TaskPriority;
 import com.server.models.enums.TaskStatus;
+import com.server.models.enums.TaskType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 @SpringBootTest(classes = ServerApplication.class)
 @AutoConfigureMockMvc
@@ -26,13 +30,20 @@ public class TaskControllerTest {
 
   @Test
   void createTask_ShouldReturnCreated() throws Exception {
-    TaskNavigationDto taskDto =
-        new TaskNavigationDto(
-            "New Task", "Task Description", "John Paul", TaskStatus.TODO, TaskPriority.HIGH);
+    TaskCreationDTO taskDto =
+        new TaskCreationDTO(
+            "New Task: " + LocalTime.now(),
+            "Task Description",
+            1L,
+            TaskStatus.TODO,
+            TaskPriority.HIGH,
+            10L,
+            null,
+            TaskType.DEVELOPMENT);
 
     mockMvc
         .perform(
-            post("/api/tasks")
+            post("/api/tasks/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(taskDto)))
         .andExpect(status().isCreated());
@@ -40,15 +51,18 @@ public class TaskControllerTest {
 
   @Test
   void updateTask_ShouldReturnOK() throws Exception {
-    Long taskId = 1L;
+    long taskId = 1L;
 
-    TaskNavigationDto taskDto =
-        new TaskNavigationDto(
-            "Updated Task",
+    TaskCreationDTO taskDto =
+        new TaskCreationDTO(
+            "Updated Task: " + LocalTime.now(),
             "Updated Task Description",
-            "Jane Doe",
+            2L,
             TaskStatus.IN_PROGRESS,
-            TaskPriority.MEDIUM);
+            TaskPriority.MEDIUM,
+            null,
+            ZonedDateTime.now(),
+            TaskType.BUG_FIX);
 
     mockMvc
         .perform(
@@ -60,15 +74,18 @@ public class TaskControllerTest {
 
   @Test
   void updateTask_ShouldReturnNotFound() throws Exception {
-    Long nonExistingTaskId = -1L;
+    long nonExistingTaskId = -1L;
 
-    TaskNavigationDto taskDto =
-        new TaskNavigationDto(
+    TaskCreationDTO taskDto =
+        new TaskCreationDTO(
             "Updated Task",
             "Updated Task Description",
-            "Jane Doe",
+            2L,
             TaskStatus.IN_PROGRESS,
-            TaskPriority.MEDIUM);
+            TaskPriority.MEDIUM,
+            null,
+            ZonedDateTime.now(),
+            TaskType.BUG_FIX);
 
     mockMvc
         .perform(
